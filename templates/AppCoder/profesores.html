@@ -1,0 +1,39 @@
+
+
+{% extends 'AppCoder/padre.html' %}
+
+{% load static %}
+
+ {% block blocke_1 %}
+
+ <h1> HACETE UN PROFE DALE EHHH!!!! </h1>
+
+ {% if fromulario.error %}
+ <p style="color:red;"> {{formulario.errors}}
+ {% endif %}
+
+ <form action="" method="POST">
+     {% csrf_token %}
+
+     <table>
+     {{ formulario.as_table }}
+     </table>
+
+     <input type="submit" value="Enviar!YA">
+
+ </form>
+
+ <h1> ACA ESTAN LOS PROFES </h1>
+
+
+ {% for p in profesores %}
+
+    <li> {{p}} </li>
+    <a href= "{% url 'profesor/actualizar' p.id %}" >Editar</a>
+    <button>
+        <a href= "{% url 'profesor/eliminar' p.id %}" >Eliminar</a>
+    </button>
+
+ {% endfor %}
+
+ {% endblock %}

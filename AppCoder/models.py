@@ -15,8 +15,11 @@ class Profesor(Model):
     nombre = CharField(max_length = 30)
     apellido = CharField(max_length = 30)
     email = EmailField()
-    
     profecion = CharField(max_length = 30)
+    
+    def __str__(self):
+        return  f"Profesor: {self.nombre} {self.apellido} Email: {self.email}, Profe de {self.profecion}"
+    
     
 class Entregable(Model):
     nombre = CharField(max_length = 30)
