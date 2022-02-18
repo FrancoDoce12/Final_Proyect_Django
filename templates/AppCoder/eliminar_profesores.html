@@ -1,0 +1,14 @@
+{% extends 'AppCoder/padre.html' %}
+
+ {% block blocke_1 %}
+<form action = "" method="POST">
+    {% csrf_token %}
+    <ul>
+        <li>Nombre: {{profesor.nombre}}</li>
+        <li>Apellido: {{profesor.apellido}}</li>
+        <li>Email: {{profesor.email}}</li>
+        <li>Profescion: {{profesor.profecion}}</li>
+    </ul>
+    <input type="submit" value="Confirmar">
+</form>
+ {% endblock %}

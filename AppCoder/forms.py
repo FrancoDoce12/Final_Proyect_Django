@@ -1,7 +1,7 @@
-from django.forms import Form, CharField, IntegerField,BooleanField,EmailField
+from django.forms import Form, CharField, IntegerField,BooleanField,EmailField,ImageField
 
 
-class CursoForm(Form):
+class CursosForm(Form):
     
     nombre = CharField(max_length=20)
     camada = IntegerField(max_value=999999)
@@ -14,4 +14,5 @@ class ProfesoresForm(Form):
     email = EmailField(max_length=20)
     profecion = CharField(max_length=20)
     
-    
+class AvatarForm(Form):
+    imagen = ImageField(required=True)

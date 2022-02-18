@@ -1,11 +1,19 @@
+from dataclasses import fields
+import re
 from django.forms import model_to_dict
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.db.backends import mysql
+from django.urls import reverse_lazy
+from  django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .forms import CursoForm,ProfesoresForm
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView,DeleteView
 
-from .models import Curso, Profesor
+from .forms import CursosForm,ProfesoresForm,AvatarForm
+
+from .models import Avatar, Curso, Profesor
 
 def crear_curso(request, camada,nombre):
     camada_int = int(camada)
@@ -35,7 +43,7 @@ def profesores(request):
         return redirect('profesores')
     
     else:
-        formulario = CursoForm()
+        formulario = CursosForm()
     
     
     return render(request,'AppCoder/profesores.html', {"profesores": Profesor.objects.all(),"formulario" : ProfesoresForm })
@@ -47,11 +55,16 @@ def entregables(request):
     return HttpResponse("vista de entregables")
 
 def prueba(request):
-    return render(request,'AppCoder/inicio_prueba.html')
+    avatar = Avatar.objects.filter(user=request.user)
+    if avatar:
+        avatar_url =avatar.last().imagen.url
+    else:
+        avatar_url=''
+    return render(request,'AppCoder/inicio_prueba.html',{'avatar_url':avatar_url})
 
 def formulario(request):
     if request.method == "POST":
-        formulario = CursoForm(request.POST)
+        formulario = CursosForm(request.POST)
         
         if formulario.is_valid():
             
@@ -61,7 +74,7 @@ def formulario(request):
         return redirect('prueba')
     
     else:
-        formulario = CursoForm()
+        formulario = CursosForm()
     
     return render(request, 'AppCoder/formulario.html',{'formulario' : formulario})
 
@@ -77,7 +90,6 @@ def profesor_actualizar(request, id):
     
     if request.method == "POST":
         formulario = ProfesoresForm(request.POST)
-        #print(formulario.cleaned_data())
         if formulario.is_valid():
             
             info = formulario.cleaned_data
@@ -86,8 +98,59 @@ def profesor_actualizar(request, id):
             profe.email = info['email']
             profe.profecion = info['profecion']
             
+            profe.save()
+            
             return redirect('profesores')
     
     else:
         formulario = ProfesoresForm(model_to_dict(profe))
     return render(request, 'AppCoder/formulario.html' ,{'formulario' : formulario})
+
+
+# clase con login requierd
+
+# class ProfesroListView(LoginRequiredMixin,ListView):
+#    model = Profesor
+#    template_name = 'AppCoder/profesores.html'
+#    context_object_name= 'profesores' 
+    
+class ProfesroListView(ListView):
+    model = Profesor
+    template_name = 'AppCoder/profesores.html'
+    context_object_name= 'profesores'
+    
+class ProfesroDetail(DetailView):
+    model = Profesor
+    template_name = 'AppCoder/ver_profesores.html'
+
+class ProfesorCrear(CreateView):
+    model = Profesor
+    success_url = reverse_lazy('profesores')
+    fields = ['nombre','apellido','email','profecion']
+    template_name= 'AppCoder/formulario.html'
+    
+class ProfesorModificar(UpdateView):
+    model = Profesor
+    success_url = reverse_lazy('profesores')
+    fields = ['nombre','apellido','email','profecion']
+    template_name= 'AppCoder/formulario.html'
+    
+class ProfesroEliminar(DeleteView):
+    model = Profesor
+    template_name = 'AppCoder/eliminar_profesores.html'
+    success_url = reverse_lazy('profesores')
+
+@login_required
+def agregar_avatar(request):
+    if request.method == 'POST':
+        formulario = AvatarForm(request.POST, request.FILES)
+        
+        if formulario.is_valid():
+            Avatar(user=request.user, imagen =formulario.cleaned_data['imagen'] ).save()
+            
+            return redirect('prueba')
+        
+    else:
+        formulario= AvatarForm()
+        
+    return render(request, 'AppCoder/crear_avatar.html',{'form': formulario})

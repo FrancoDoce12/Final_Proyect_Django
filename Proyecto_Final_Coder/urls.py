@@ -15,13 +15,22 @@ Including another URLconf
 """
 from xml.etree.ElementInclude import include
 from django.contrib import admin
+from django.contrib.auth.views import LogoutView
 from django.urls import path, include
+from Proyecto_Final_Coder.views import login_request,registro,editar_perfil,UserCreateView
+from django.conf import settings
+from django.conf.urls.static import static
 
-from AppCoder.views import crear_curso, inicio, cursos, profesores,estudiantes,entregables
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('crearCurso/caca/<camada>', crear_curso),
     path("Coder/", include('AppCoder.urls')),
+    path("login",login_request, name= 'login'),
+    path("registro",UserCreateView.as_view(), name= 'registro'),
+    path("logout",LogoutView.as_view(template_name= 'logout.html'), name='logout'),
+    path('useredit',editar_perfil, name='user_edit')
     
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
