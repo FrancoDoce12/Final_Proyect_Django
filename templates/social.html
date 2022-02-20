@@ -1,0 +1,19 @@
+{% extends 'AppCoder/padre.html' %}
+
+ {% block blocke_1 %}
+ 
+  {% for  p in users.all  %}
+
+  <br>
+  <h1>{{p.username}}</h1>
+  <br>
+  <h2>{{p.email}}</h2>
+  <br>
+  <button>
+    <a href= "{% url 'user_profile' p.id %}" >VerPerfil</a>
+  </button>
+  <br>
+  <br>
+  {% endfor %}
+
+  {% endblock %}

@@ -1,12 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logeate</title>
-</head>
-<body>
+{% extends 'AppCoder/padre_3.html' %}
+
+{% block titulo %}
+<!-- Masthead-->
+<header class="masthead">
+    <div class="container position-relative">
+        <div class="row justify-content-center">
+            <div class="col-xl-6">
+                <div class="text-center text-white">
+                    <!-- Page heading-->
+                    <h1 class="mb-5">PROFEE APROBAMEEEEEEEEE</h1>
+                    <!-- Signup form-->
+                    <!-- * * * * * * * * * * * * * * *-->
+                    <!-- * * SB Forms Contact Form * *-->
+                    <!-- * * * * * * * * * * * * * * *-->
+                    <!-- This form is pre-integrated with SB Forms.-->
+                    <!-- To make this form functional, sign up at-->
+                    <!-- https://startbootstrap.com/solution/contact-forms-->
+                    <!-- to get an API token!-->
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock %}
+
+
+{% block blocke_1 %}
 
     <form action="" method="POST">
        {% csrf_token %}
@@ -20,5 +40,4 @@
 
 <a href= "{% url 'registro' %}">Registrate aca! </a>
 
-</body>
-</html>
+{% endblock %}

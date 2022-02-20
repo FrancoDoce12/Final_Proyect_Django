@@ -1,0 +1,42 @@
+{% extends 'AppCoder/padre_3.html' %}
+
+
+{% block titulo %}
+<!-- Masthead-->
+<header class="masthead">
+  <div class="container position-relative">
+      <div class="row justify-content-center">
+          <div class="col-xl-6">
+              <div class="text-center text-red">
+                  <!-- Page heading-->
+                  <h1 class="mb-5">{{post.titulo}}</h1>
+                  <!-- Signup form-->
+                  <!-- * * * * * * * * * * * * * * *-->
+                  <!-- * * SB Forms Contact Form * *-->
+                  <!-- * * * * * * * * * * * * * * *-->
+                  <!-- This form is pre-integrated with SB Forms.-->
+                  <!-- To make this form functional, sign up at-->
+                  <!-- https://startbootstrap.com/solution/contact-forms-->
+                  <!-- to get an API token!-->
+                  <h3>{{post.descripcion}}</h3>
+              </div>
+          </div>
+      </div>
+  </div>
+</header>
+{% endblock %}
+
+
+
+ {% block blocke_1 %}
+ 
+  <br>
+  <br>
+  <h5>{{post.text}}</h5>
+  <br>
+  <h6> Echo por: {{post.autor}}</h6>
+  <br>
+  <h6> Publicado el: {{post.fecha_de_creacion}}</h6>
+
+
+ {% endblock %}

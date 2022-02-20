@@ -1,0 +1,24 @@
+{% extends 'AppCoder/padre.html' %}
+
+ {% block blocke_1 %}
+ 
+  {% for  p in post.all  %}
+
+  <br>
+  <h1>{{p.titulo}}</h1>
+  <br>
+  <h2>{{p.descripcion}}</h2>
+  <br>
+  <h5> Creado por: 
+  {{p.autor}}
+    Publicado en: 
+  {{p.fecha_de_creacion}}</h5>
+  <br>
+  <button>
+    <a href= "{% url 'post_detail' p.id %}" >Leer Post!</a>
+</button>
+<br>
+<br>
+  {% endfor %}
+
+ {% endblock %}

@@ -1,18 +1,14 @@
-{% extends 'AppCoder/padre_inicio.html' %}
-
-{% load static %}
-
+{% extends 'AppCoder/padre_3.html' %}
 
 {% block titulo %}
-
- <!-- Masthead-->
- <header class="masthead">
+<!-- Masthead-->
+<header class="masthead">
     <div class="container position-relative">
         <div class="row justify-content-center">
             <div class="col-xl-6">
-                <div class="text-center text-RED">
+                <div class="text-center text-red">
                     <!-- Page heading-->
-                    <h1 class="mb-5">¡Encuentra todas las novedades de Blocks Pics y su comunidad internacional, lee articulos, informate y aprende!</h1>
+                    <h1 class="mb-5">¡Hey! <br> No tan rapido, primero tienes que logearte o registrarte</h1>
                     <!-- Signup form-->
                     <!-- * * * * * * * * * * * * * * *-->
                     <!-- * * SB Forms Contact Form * *-->
@@ -27,17 +23,21 @@
         </div>
     </div>
 </header>
-
 {% endblock %}
 
 
+{% block blocke_1 %}
 
- {% block blocke_1 %}
+    <form action="" method="POST">
+       {% csrf_token %}
+        <table>
+       {{form.as_table}}
+        </table>
 
+       <input type="submit" value ="Iniciar Secion" >
 
+    </form>
 
+<a href= "{% url 'registro' %}">¡Si no estas registrado hacelo ahora! </a>
 
-
-
- 
- {% endblock %}
+{% endblock %}

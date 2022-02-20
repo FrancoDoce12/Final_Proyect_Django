@@ -1,4 +1,4 @@
-from django.forms import Form, CharField, IntegerField,BooleanField,EmailField,ImageField
+from django.forms import Form, CharField, IntegerField,BooleanField,EmailField,ImageField,DateField
 
 
 class CursosForm(Form):
@@ -16,3 +16,10 @@ class ProfesoresForm(Form):
     
 class AvatarForm(Form):
     imagen = ImageField(required=True)
+    
+class PostForm(Form):
+    descripcion = CharField(max_length = 60)
+    text = CharField(max_length = 1000)
+    titulo = CharField(max_length = 25)
+    logo = ImageField(required=False)
+    

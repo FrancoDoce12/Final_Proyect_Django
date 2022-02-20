@@ -1,15 +1,39 @@
-{% extends 'AppCoder/padre.html' %}
 
+
+{% extends 'AppCoder/padre_2.html' %}
+
+{% block blocke_1 %}
 {% load static %}
-
- {% block blocke_1 %}
- <header class="py-5">
+<header class="masthead">
+    <div class="container position-relative">
+        <div class="row justify-content-center">
+            <div class="col-xl-6">
+                <div class="text-center text-red">
+                    <!-- Page heading-->
+                    <h1 class="mb-5">¡Bienvenido a Blocks Pics!</h1>
+                    <h5 class="mb-5">Se Admite el Spanenglish</h5>
+                    <h8 class="mb-5">y algunas faltas ortograficas</h8>
+                    <!-- Signup form-->
+                    <!-- * * * * * * * * * * * * * * *-->
+                    <!-- * * SB Forms Contact Form * *-->
+                    <!-- * * * * * * * * * * * * * * *-->
+                    <!-- This form is pre-integrated with SB Forms.-->
+                    <!-- To make this form functional, sign up at-->
+                    <!-- https://startbootstrap.com/solution/contact-forms-->
+                    <!-- to get an API token!-->
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<header class="py-5">
     <div class="container px-lg-5">
         <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
             <div class="m-4 m-lg-5">
                 <h1 class="display-5 fw-bold">Welcom to BlockPics!</h1>
                 <p class="fs-4">This is your site to publish your favorites Ideas!, Adventures!, Invents and more wich us and our greate comunity!!!</p>
-                <a class="btn btn-primary btn-lg" href="#!">Start Now!</a>
+                <a class="btn btn-primary btn-lg" href="{% url 'registro' %}">¡Registrate ahora!</a>
             </div>
         </div>
     </div>
@@ -23,8 +47,8 @@
                 <div class="card bg-light border-0 h-100">
                     <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
                         <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-collection"></i></div>
-                        <h2 class="fs-4 fw-bold">Fresh new Adventure!</h2>
-                        <p class="mb-0">Create an adventure witch frends and share it wich the world</p>
+                        <h2 class="fs-4 fw-bold">Empieza a postear ahora!</h2>
+                        <p class="mb-0">¡Comparte tus ideas y aventuras con el mundo entero!</p>
                     </div>
                 </div>
             </div>
@@ -32,8 +56,8 @@
                 <div class="card bg-light border-0 h-100">
                     <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
                         <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-cloud-download"></i></div>
-                        <h2 class="fs-4 fw-bold">Free to Start Living</h2>
-                        <p class="mb-0">Create an accaunt now and start living the true Life</p>
+                        <h2 class="fs-4 fw-bold">Gratis registrate ahora!</h2>
+                        <p class="mb-0">Puedes crear una cuenta ya ahora y empezar a disfrutar</p>
                     </div>
                 </div>
             </div>
@@ -41,8 +65,8 @@
                 <div class="card bg-light border-0 h-100">
                     <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
                         <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-card-heading"></i></div>
-                        <h2 class="fs-4 fw-bold">Jumbotron hero header</h2>
-                        <p class="mb-0">The heroic part of this template is the jumbotron hero header!</p>
+                        <h2 class="fs-4 fw-bold">Consige ser reconocido</h2>
+                        <p class="mb-0">En esta pagina puedes ser conocido por tus ideas</p>
                     </div>
                 </div>
             </div>
@@ -50,8 +74,8 @@
                 <div class="card bg-light border-0 h-100">
                     <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
                         <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-bootstrap"></i></div>
-                        <h2 class="fs-4 fw-bold">Feature boxes</h2>
-                        <p class="mb-0">We've created some custom feature boxes using Bootstrap icons!</p>
+                        <h2 class="fs-4 fw-bold">Lee otros posts</h2>
+                        <p class="mb-0">Puedes leer otros post de usuarios o amigos registrados</p>
                     </div>
                 </div>
             </div>
@@ -59,8 +83,8 @@
                 <div class="card bg-light border-0 h-100">
                     <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
                         <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-code"></i></div>
-                        <h2 class="fs-4 fw-bold">Simple clean code</h2>
-                        <p class="mb-0">We keep our dependencies up to date and squash bugs as they come!</p>
+                        <h2 class="fs-4 fw-bold">Muchas ventajas</h2>
+                        <p class="mb-0">Puedes mantenerte informado del munco mientras charlas o lees un libro</p>
                     </div>
                 </div>
             </div>
@@ -68,12 +92,15 @@
                 <div class="card bg-light border-0 h-100">
                     <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
                         <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-patch-check"></i></div>
-                        <h2 class="fs-4 fw-bold">A name you trust</h2>
-                        <p class="mb-0">Start Bootstrap has been the leader in free Bootstrap templates since 2013!</p>
+                        <h2 class="fs-4 fw-bold">Block Pics</h2>
+                        <p class="mb-0">Block Pics siempre mantendra segura tu informacion y transparencia con el ciente</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
- {% endblock %}
+
+
+{% endblock %}
+

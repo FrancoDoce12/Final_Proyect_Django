@@ -1,19 +1,25 @@
 from dataclasses import fields
-import re
+from datetime import datetime
 from django.forms import model_to_dict
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.urls import reverse_lazy
-from  django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView,DeleteView
 
-from .forms import CursosForm,ProfesoresForm,AvatarForm
+from .forms import CursosForm,ProfesoresForm,AvatarForm,PostForm
 
-from .models import Avatar, Curso, Profesor
+from .models import Avatar, Curso, Profesor, Post
+
+
+def helpp(request):
+    return render(request, 'AppCoder/help.html')
+
 
 def crear_curso(request, camada,nombre):
     camada_int = int(camada)
@@ -22,8 +28,6 @@ def crear_curso(request, camada,nombre):
     
     return HttpResponse(f"Curso creadoo!!!  nombre: {curso.nombre} camada: {camada}")
 
-def inicio(request):
-    return render(request, 'AppCoder/inicio.html')
 
 def cursos(request):
     return render(request, 'AppCoder/cursos.html')
@@ -54,13 +58,19 @@ def estudiantes(request):
 def entregables(request):
     return HttpResponse("vista de entregables")
 
-def prueba(request):
-    avatar = Avatar.objects.filter(user=request.user)
-    if avatar:
-        avatar_url =avatar.last().imagen.url
+def inicio(request):
+    if request.user.is_authenticated:
+        
+        avatar = Avatar.objects.filter(user=request.user)
+        if avatar:
+            avatar_url =avatar.last().imagen.url
+        else:
+            avatar_url=''
     else:
         avatar_url=''
-    return render(request,'AppCoder/inicio_prueba.html',{'avatar_url':avatar_url})
+        
+    Post.objects.all()
+    return render(request,'AppCoder/inicio.html',{'avatar_url':avatar_url,'posts':Post.objects.all()})
 
 def formulario(request):
     if request.method == "POST":
@@ -154,3 +164,47 @@ def agregar_avatar(request):
         formulario= AvatarForm()
         
     return render(request, 'AppCoder/crear_avatar.html',{'form': formulario})
+
+
+
+def bienvenido(request):
+    return render(request, 'AppCoder/bienvenida.html')
+
+@login_required
+def crear_post(request):
+    if request.method == 'POST':
+        formulario = PostForm(request.POST, request.FILES)
+        
+        if formulario.is_valid():
+            
+            Post    (
+                logo=formulario.cleaned_data['logo'],
+                user=request.user,
+                autor=request.user.username,
+                fecha_de_creacion = datetime.now(),
+                titulo =formulario.cleaned_data['titulo'],
+                text =formulario.cleaned_data['text'],
+                descripcion =formulario.cleaned_data['descripcion']
+                     ).save()
+            
+            return redirect('inicio')
+        
+    else:
+        formulario= PostForm()
+        
+    return render(request, 'AppCoder/crear_avatar.html',{'form': formulario})
+
+
+class PostListView(ListView):
+    model = Post
+    template_name = 'AppCoder/ver_post.html'
+    context_object_name= 'post'
+    
+class PostDetail(DetailView):
+    model = Post
+    template_name = 'AppCoder/ver_post_detalle.html'
+
+
+@login_required
+def para_ti(request):
+    return render(request, 'AppCoder/para_ti.html')

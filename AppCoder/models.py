@@ -1,3 +1,4 @@
+
 from django.db.models import Model, ForeignKey, CASCADE, ImageField
 from django.db.models.fields import CharField, IntegerField, EmailField, DateField, BooleanField, TextField
 from django.contrib.auth.models import User
@@ -28,15 +29,18 @@ class Entregable(Model):
     entregado = BooleanField()
     
 class Post(Model):
-    descripcion = TextField()
+    descripcion= TextField()
     text = TextField()
     titulo = CharField(max_length = 30)
     autor= CharField(max_length=20)
     fecha_de_creacion = DateField()
     user = ForeignKey(User, on_delete=CASCADE)
-    logo = ImageField(upload_to = 'posts', null=True,blank=True)
+    logo = ImageField(upload_to = 'logopost', null=True,blank=True)
     
-
+    def __str__(self):
+        return  f"{self.titulo}\n {self.descripcion}\n By {self.autor} Published the {self.fecha_de_creacion}"
+    
+    
 
 class Avatar(Model):
     user = ForeignKey(User, on_delete=CASCADE)
