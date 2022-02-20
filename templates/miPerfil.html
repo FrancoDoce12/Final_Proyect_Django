@@ -36,10 +36,11 @@
 
 <img src="{{avatar_url}}" height="40px"/>
 <br>
-<h2>{{user.email}}</h2>
-<h2>{{user.first_name}}</h2>
-<h2>{{user.last_name}}</h2>
-
+<h2>Email: {{user.email}}</h2>
+{%if user.first_name %}
+<h2>Nombre: {{user.first_name}}</h2>
+<h2>Apellido: {{user.last_name}}</h2>
+{%endif%}
 
 <button>
     <a href= "{% url 'user_edit'  %}" >Editar Perfil</a>

@@ -34,10 +34,11 @@
  {% block blocke_1 %}
 
 <h1> Ultimos posts! </h1> <br>
+{% if ultimo_post %}
 <br>
   <h2>Titulo: {{ultimo_post.titulo}}</h2>
   <br>
-  <h3>Descripcion {{ultimo_post.descripcion}}</h3>
+  <h3>Descripcion: {{ultimo_post.descripcion}}</h3>
   <br>
   <h5> Creado por: 
   {{ultimo_post.autor}}
@@ -49,8 +50,16 @@
   </button>
 
   <br><br><br>
+  {% else %}
+  <h2> No se han encontrado posts :c </h2>
+  <br>
+  <br>
+   {% endif %}
+
 
   <h1>Usuarios nuevos, mandales un saludo!</h1>
+
+  {% if ultimo_usuario %}
 
   {{ultimo_usuario.username}}
   {{ultimo_usuario.email}} <br>
@@ -59,6 +68,13 @@
 
   <button>
     <a href= "{% url 'user_profile' ultimo_usuario.id %}" >VerPerfil</a>
+    <br>
+    <br>
   </button>
+
+  {% else %}
+  <h2> No se han usuarios nuevos :c </h2>
+  {% endif %}
+
 
  {% endblock %}
