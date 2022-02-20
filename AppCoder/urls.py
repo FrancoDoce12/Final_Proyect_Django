@@ -2,7 +2,7 @@ from multiprocessing import context
 from django.urls import path
 from  django.contrib.auth.decorators import login_required
 
-from AppCoder.views import crear_curso,bienvenido,crear_post, para_ti ,PostDetail,PostListView,inicio,helpp, cursos,agregar_avatar,estudiantes,entregables, inicio, formulario,profesor_eliminar,profesor_actualizar,ProfesroListView,ProfesorCrear,ProfesorModificar, ProfesroEliminar, ProfesroDetail
+from AppCoder.views import crear_curso, bienvenido, buscar, busqueda_post, crear_post, para_ti ,PostDetail , PostListView, inicio, helpp, cursos, agregar_avatar,estudiantes,entregables, formulario,ProfesroListView,ProfesorCrear,ProfesorModificar, ProfesroEliminar, ProfesroDetail
 
 
 
@@ -15,6 +15,9 @@ urlpatterns = [
     path("crear_post", crear_post, name='crear_post'),
     path("post/view", PostListView.as_view(), name='post_view'),
     path("post/detail/<pk>", PostDetail.as_view(), name='post_detail'),
+    path("post/buscar", busqueda_post, name='post_buscar'),
+    path("buscar", buscar, name='buscar'),
+    
     
     
     path("cursos", cursos, name="cursos"),

@@ -70,7 +70,7 @@ def registro(request):
     
 class UserCreateView(CreateView):
     model = User
-    success_url = reverse_lazy('Coder/inicio')
+    success_url = reverse_lazy('inicio')
     template_name = 'registro.html'
     form_class = UserRegistrationForm
     
@@ -93,10 +93,11 @@ def editar_perfil(request):
             user.first_name = data['first_name']
             user.last_name = data['last_name']
             user.save()
-            return redirect('prueba')
+            login(request, user)
+            return redirect('inicio')
         
     else:
-        formulario = UserEditForm({'email': user.email})
+        formulario = UserEditForm({'email': user.email,'first_name':user.first_name,'last_name':user.last_name})
         
     return render(request,'editar_perfil.html', {'form':formulario})
 

@@ -1,0 +1,26 @@
+{% extends 'AppCoder/padre_3.html' %}
+
+{% block blocke_1 %}
+ 
+
+{% if posts %}
+    <h1> Posts encontrados: </h1> <br>
+    <h2> Criterio de busqueda usado: {{titulo}}  </h2> <br>
+    <ul>
+
+        {% for p in posts %}
+        <li> {{p}} </li>
+
+        <button>
+            <a href= "{% url 'post_detail' p.id %}" >Abrir Post</a>
+        </button>
+        {% endfor %}
+    </ul>
+
+
+{% else %}
+<h2> Criterio de busqueda usado: {{titulo}}  </h2> <br>
+<h2> No se han encontrado resultados :c </h2><br>
+{% endif %}
+
+ {% endblock %}

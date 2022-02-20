@@ -1,0 +1,17 @@
+{% extends 'AppCoder/padre.html' %}
+
+{% block blocke_1 %}
+
+<h1> Buscar Post en Blocks Picks </h1> <br><br>
+ 
+    <form action="{% url 'buscar'%}" method='GET'>
+        <h3> Buscar por titulo </h3>
+        <input type"text" name="titulo"value="Titulo">
+
+        <button>
+        <input type"submit" value="Buscar">
+        </button>
+
+    </form>
+
+ {% endblock %}

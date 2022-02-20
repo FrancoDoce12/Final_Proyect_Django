@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from  django.contrib.auth.models import User
 
 
 from django.views.generic import ListView
@@ -69,8 +70,13 @@ def inicio(request):
     else:
         avatar_url=''
         
-    Post.objects.all()
-    return render(request,'AppCoder/inicio.html',{'avatar_url':avatar_url,'posts':Post.objects.all()})
+    
+    ultimo_post = Post.objects.last()
+    ultimo_usuario = User.objects.last()
+    
+    return render(request,'AppCoder/inicio.html',
+                  {'avatar_url':avatar_url,'ultimo_post':ultimo_post,'ultimo_usuario':ultimo_usuario}
+                  )
 
 def formulario(request):
     if request.method == "POST":
@@ -198,7 +204,7 @@ def crear_post(request):
 class PostListView(ListView):
     model = Post
     template_name = 'AppCoder/ver_post.html'
-    context_object_name= 'post'
+    context_object_name= 'posts'
     
 class PostDetail(DetailView):
     model = Post
@@ -208,3 +214,21 @@ class PostDetail(DetailView):
 @login_required
 def para_ti(request):
     return render(request, 'AppCoder/para_ti.html')
+
+
+def busqueda_post(request):
+    return render(request, 'AppCoder/post_buscar.html')
+
+
+def buscar(request):
+    
+    if request.GET['titulo']:
+        
+        titulo = request.GET['titulo']
+        
+        posts = Post.objects.filter(titulo__icontains = titulo)
+        
+        return render(request, 'AppCoder/buscar.html',{'posts':posts, 'titulo':titulo})
+    
+    else:
+        return HttpResponse("Busqueda invalida")

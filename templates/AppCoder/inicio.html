@@ -31,13 +31,34 @@
 {% endblock %}
 
 
-
  {% block blocke_1 %}
 
+<h1> Ultimos posts! </h1> <br>
+<br>
+  <h2>Titulo: {{ultimo_post.titulo}}</h2>
+  <br>
+  <h3>Descripcion {{ultimo_post.descripcion}}</h3>
+  <br>
+  <h5> Creado por: 
+  {{ultimo_post.autor}}
+    Publicado el: 
+  {{ultimo_post.fecha_de_creacion}}</h5>
+  <br>
+  <button>
+    <a href= "{% url 'post_detail' ultimo_post.id %}" >Leer Post!</a>
+  </button>
 
+  <br><br><br>
 
+  <h1>Usuarios nuevos, mandales un saludo!</h1>
 
+  {{ultimo_usuario.username}}
+  {{ultimo_usuario.email}} <br>
+  {{ultimo_usuario.last_name}}
+  {{ultimo_usuario.first_name}}
 
+  <button>
+    <a href= "{% url 'user_profile' ultimo_usuario.id %}" >VerPerfil</a>
+  </button>
 
- 
  {% endblock %}

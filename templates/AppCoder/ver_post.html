@@ -1,8 +1,10 @@
 {% extends 'AppCoder/padre.html' %}
 
  {% block blocke_1 %}
+
+ {% if posts %}
  
-  {% for  p in post.all  %}
+  {% for  p in posts.all %}
 
   <br>
   <h1>{{p.titulo}}</h1>
@@ -16,9 +18,14 @@
   <br>
   <button>
     <a href= "{% url 'post_detail' p.id %}" >Leer Post!</a>
-</button>
+  </button>
 <br>
 <br>
   {% endfor %}
+
+  {% else %}
+  <h1> No se han encontrado posts, lo sentimos :c </h1>
+
+  {% endif %}
 
  {% endblock %}
