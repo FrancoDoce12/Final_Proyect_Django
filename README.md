@@ -1,7 +1,7 @@
 # Final_Proyect_Django
 
 Este proyecto fue creado en su totalidad por Franco Sanchez puede buscar mas informacion dentro de "sobremi" url 
-y tambien puede encontrar ese link en el pie de pagina para un accseso mas comodo
+y tambien puede encontrar este link en el pie de pagina para un accseso mas comodo
 
 la pagina de inicio es "Coder/bienvenido" 
 
